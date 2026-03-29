@@ -1,59 +1,64 @@
-AI Global Job Market Insights & Trends (2025-2026)
-Comprehensive Power BI dashboard & interactive analysis of the global AI job market, focusing on salary benchmarks, regional growth, and work-type dynamics.
+# Customer Churn Prediction
 
---
-
-Project Overview
-This project provides a comprehensive analysis of the global AI job market. By leveraging data visualization, the dashboard explores how the demand for artificial intelligence skills is shaping salaries and work dynamics across different industries and regions.
-
---
-
-Dataset Information
-
-The analysis is based on a comprehensive dataset of global AI job market trends (2025-2026). 
-**Data Source:** Kaggle , [Kaggle - AI Jobs Market 2025-2026](https://www.kaggle.com/datasets/alitaqishah/ai-jobs-market-2025-2026-salaries)
-**Size:** Over 1,500+ job records with detailed features.
-**Key Attributes:** Job Title, Company Type, Experience Level, Salary (USD), Remote Ratio, and Required Skills.
-
-
-What this Dashboard Answers:
-**Market Demand:** Which AI-related roles are currently the most sought after?
-**Salary Benchmarks:** How do experience levels and specific technical skills impact earning potential?
-**Work-Life Dynamics:** What is the distribution of Remote vs. On-site opportunities in the tech sector?
-**Global Growth:** Which countries are leading the surge in AI job availability?
-
---
-
-Dashboard Preview
-![Market Overview](01_Overview.png)
-![Skill Opportunities](02_Skills_Analysis.png)
-![Global Market Growth](03_Global_Map.png)
+## Project Overview
+This project builds a machine learning model to predict whether a bank customer will leave (churn) or stay. The goal is to help banks identify at-risk customers early and take action to improve retention.
 
 ---
 
-Detailed Visual Analysis
+## Dataset Description
+- Source: Kaggle — Bank Customer Churn Dataset  
+- Rows: 10,000 customers  
+- Features: 11 (after removing ID-related columns)  
+- Target: `Exited` (1 = churn, 0 = stay)  
+- Churn rate: ~20.4% (imbalanced dataset)  
+- No missing values  
 
-1. AI Market Overview (Executive Summary)
-**KPI Tiles:** Provides a high-level snapshot of the market with a **Demand Score of 87.52** and an average salary of **$194.89K**, indicating a highly competitive and lucrative field.
-**Salary by Experience:** Shows a clear upward trajectory in compensation, with **Lead roles** significantly outperforming Entry and Mid-level positions, emphasizing the value of seniority in AI.
-**Top Paying Job Titles:** Highlights that **AI Solutions Architects** and **Senior ML Engineers** are currently at the top of the pay scale, often exceeding $0.25M.
+---
 
-2. Skill Demand & Market Opportunities
-**The "Golden Skills" Matrix:** A scatter plot identifying high-demand/high-pay skills. **Python** stands out as the ultimate "Golden Skill" with the highest demand, while **Cloud** and **Leadership** skills command premium salaries.
-**LLM Salary Premium:** A specialized gauge chart showing that expertise in **Large Language Models (LLMs)** grants an average **8.6% salary premium**, proving the direct financial impact of staying updated with Generative AI.
-**Work Type Distribution:** Reveals that nearly **30%** of AI roles are fully remote, reflecting the modern tech industry's shift towards flexible work environments.
+## Workflow Steps
+1. Exploratory Data Analysis (EDA)  
+2. Data preprocessing:
+   - Dropped irrelevant columns  
+   - One-hot encoding for categorical features  
+   - Train/test split (80/20)  
+   - Feature scaling using StandardScaler  
+3. Model training  
+4. Model evaluation  
+5. Feature importance analysis  
 
-3. Global Market Growth
-**Regional Demand YoY:** A ranking of countries by year-over-year growth. The **UAE and China** lead the surge with **33% growth**, showcasing emerging hubs for AI talent outside the traditional US market.
-**Global Salary Mapping:** A geospatial visualization where bubble size represents average salary. It clearly identifies North America and parts of Europe as high-compensation zones, while Asia and the Middle East are rapidly closing the gap in demand.
+---
 
+## Models Used
+- Logistic Regression (baseline)  
+- Decision Tree (non-linear model)  
+- Random Forest (ensemble model, best performance)  
 
+---
 
-Tools Used
-* **Power BI** (Data Visualization & UI/X Design)
-* **DAX** (Custom Metrics & Calculations)
-* **Power Query** (Data Cleaning & Transformation)
+## Evaluation Metrics and Results
 
+| Model | Accuracy | Precision | Recall | F1-score | ROC-AUC |
+|------|---------|----------|--------|----------|---------|
+| Logistic Regression | 81% | 59% | 19% | 28% | 0.7748 |
+| Decision Tree | 86% | 79% | 40% | 53% | 0.8423 |
+| Random Forest | 86% | 78% | 46% | 58% | 0.8522 |
 
-Project Files
-* **[Download Power BI File (.pbix)](aiJobsProject.pbix)** - Access the full interactive dashboard and data model.
+- **Best model:** Random Forest (ROC-AUC = 0.8522)
+
+---
+
+## Key Insights
+- Age is the strongest predictor of churn  
+- Customers aged 40–60 are more likely to leave  
+- Customers in Germany show the highest churn rate  
+- Inactive customers churn more frequently  
+- Customers with high balance and only one product are high risk  
+
+---
+
+## Business Impact / Real-World Use
+This model can be used by banks to:
+
+- Identify customers at risk of leaving  
+- Target high-risk customers with retention strategies  
+- Improve customer retention and reduce losses  
